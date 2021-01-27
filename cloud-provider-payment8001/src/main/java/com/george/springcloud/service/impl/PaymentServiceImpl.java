@@ -3,6 +3,7 @@ package com.george.springcloud.service.impl;
 import com.george.springcloud.dao.PaymentDao;
 import com.george.springcloud.entities.Payment;
 import com.george.springcloud.service.PaymentService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,7 +24,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment getPaymentById(Long id) {
+    public Payment getPaymentById(@Param("id") Long id) {
         return paymentDao.getPaymentById(id);
     }
 }
