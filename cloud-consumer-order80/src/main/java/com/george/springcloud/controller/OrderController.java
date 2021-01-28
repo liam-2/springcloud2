@@ -5,8 +5,11 @@ package com.george.springcloud.controller;
 
 import com.george.springcloud.entities.CommonResult;
 import com.george.springcloud.entities.Payment;
+import com.george.springcloud.lb.LoadBalancer;
 import com.netflix.ribbon.proxy.annotation.Http;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.net.CookieManager;
+import java.net.URI;
+import java.util.List;
 
 /**
  * @author Yang Hao
@@ -25,10 +30,16 @@ import java.net.CookieManager;
 @Slf4j
 public class OrderController {
 
-    public static final String PAYMENT_URL="http://cloud-payment-service";
+    public static final String PAYMENT_URL="http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;
+
+    @Resource
+    private LoadBalancer loadBalancer;
+    @Resource
+    DiscoveryClient discoveryClient;
+
 
     @PostMapping ("/consumer/payment/create")
     public CommonResult<Payment> create(Payment payment){
@@ -54,6 +65,8 @@ public class OrderController {
             return  new CommonResult<>(444,"操作失败");
 
         }
+
+    }
    /* @PostMapping("/consumer/payment/create2")
     public CommonResult<Payment> create2(Payment payment){
 
@@ -63,6 +76,19 @@ public class OrderController {
 
 
 
-    }
+
+   /* @GetMapping(value = "/consumer/payment/lb")
+    public String getPaymentLB(){
+
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+
+       if (instances == null || instances.size() <= 0) {
+            return null;
+        }
+
+        ServiceInstance serviceInstance = loadBalancer.instances(instances);
+        URI uri = serviceInstance.getUri();
+        return restTemplate.getForObject(uri + "/payment/lb", String.class);
+    }*/
 
 }

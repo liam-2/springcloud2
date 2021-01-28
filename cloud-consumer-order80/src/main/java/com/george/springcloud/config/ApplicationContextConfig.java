@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
  **/
 @Configuration
 public class ApplicationContextConfig {
+
+    //@LoadBalanced 使用自己的算法
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate(){
