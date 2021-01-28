@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @description
  * @date 2020-09-16 16:38
  */
-
+//专门配置》global配置》通用配置
 @DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")//没配置找default
 @RestController
 @Slf4j
@@ -25,7 +25,7 @@ public class OrderHystrixController {
     @Resource
     private PaymentHystrixService paymentHystrixService;
 
-    @HystrixCommand
+
     @GetMapping("/consumer/payment/hystrix/ok/{id}")
     public String paymentInfo_OK(@PathVariable("id") Integer id) {
         //int a=10/0;
