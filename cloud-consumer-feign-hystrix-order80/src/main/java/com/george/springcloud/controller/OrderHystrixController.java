@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @description
  * @date 2020-09-16 16:38
  */
-//专门配置》global配置》通用配置
+//通配》专用》全局
 @DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")//没配置找default
 @RestController
 @Slf4j
@@ -28,20 +28,12 @@ public class OrderHystrixController {
 
     @GetMapping("/consumer/payment/hystrix/ok/{id}")
     public String paymentInfo_OK(@PathVariable("id") Integer id) {
-        //int a=10/0;
+       // int a=10/0;
         String result = paymentHystrixService.paymentInfo_OK(id);
         return result;
     }
 
-//    @GetMapping("/consumer/payment/hystrix/timeout/{id}")
-//    public String paymentInfo_TimeOut(@PathVariable("id") Integer id){
-//        String result = paymentHystrixService.paymentInfo_TimeOut(id);
-//        return result;
-//    }
 
-
-
-    //@HystrixCommand //参考全局降级方法注释,payment_Global_FallbackMethod
 
     @GetMapping("/consumer/payment/hystrix/timeout/{id}")
     @HystrixCommand(fallbackMethod = "PaymentTimeOutFallbackMethod", commandProperties = {
