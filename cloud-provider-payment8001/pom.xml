@@ -13,11 +13,11 @@
 
     <dependencies>
         <!--包含了sleuth+zipkin;sleuth链路监控展现,P94所需依赖-->
-       <!-- <dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
--->
+
         <!--   引入eureka客户端     -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
