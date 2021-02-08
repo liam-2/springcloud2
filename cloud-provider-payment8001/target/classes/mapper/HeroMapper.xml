@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.HeroMapper">
+	<resultMap id="BaseMap" type="domain.Hero">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="attack" property="attack" jdbcType="VARCHAR" />
+		<result column="defend" property="defend" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="BaseColumns">
+	  a.id, a.name, a.attack, a.defend
+	</sql>
+	<insert id="insert" parameterType="domain.Hero">
+		insert into hero
+		  (id, name, attack, defend)
+		values
+		  (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{attack,jdbcType=VARCHAR}, #{defend,jdbcType=VARCHAR}
+		  )
+	</insert>
+	<update id="update" parameterType="domain.Hero">
+		update hero
+		set
+			id = #{id,jdbcType=INTEGER},
+			name = #{name,jdbcType=VARCHAR},
+			attack = #{attack,jdbcType=VARCHAR},
+			defend = #{defend,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		delete from hero where id = #{id,jdbcType=INTEGER}
+	</delete>
+</mapper>

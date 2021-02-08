@@ -38,6 +38,7 @@
         <module>seata-order-service2001</module>
         <module>seata-order-service2002</module>
         <module>seata-order-service2003</module>
+        <module>cloud-mybaitsplus-study</module>
         <!--   <module>cloud-consumer-order80</module>
            <module>cloud-api-commons</module>
            <module>cloud-eureka-server7001</module>
