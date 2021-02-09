@@ -15,12 +15,17 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+public class ProductVo {
         private Integer id;
-
+        private Integer count;
         private String name;
 
-        private Double price;
+        private Integer userId;
+
+        private String userName;
+
+
+
 
 
 

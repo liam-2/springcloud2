@@ -1,8 +1,11 @@
 package com.mybaits.study.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mybaits.study.entity.ProductVo;
 import com.mybaits.study.entity.User;
+import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
 
 
 /**
@@ -16,6 +19,8 @@ import com.mybaits.study.entity.User;
 
 public interface UserMapper extends BaseMapper<User> {
 
+    @Select("select p.*,u.name from product p,user u where p.user_id=u.id and u.id=#{id}")
+    List<ProductVo> PRODUCT_VO_LIST(Integer id);
 
 
 
